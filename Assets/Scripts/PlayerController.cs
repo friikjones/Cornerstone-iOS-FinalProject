@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
         onCoolDown
     }
 
+    private Animator anim;
     private CapsuleCollider collider;
     private CapsuleCollider swordCollider;
 
@@ -17,6 +18,9 @@ public class PlayerController : MonoBehaviour
     public float coolDownCounter;
     public float movementSpeed;
     public float knockBackForce;
+    public float attackDuration;
+    public float attackCounter;
+    public bool isAttacking;
     public float dodgeDuration;
     public float dodgeCounter;
     public bool isDodging;
@@ -25,6 +29,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         collider = GetComponent<CapsuleCollider>();
+        anim = GetComponent<Animator>();
         swordCollider = GameObject.FindWithTag("Sword").GetComponent<CapsuleCollider>();
         health = 5;
         coolDownCounter = 0;
@@ -38,6 +43,7 @@ public class PlayerController : MonoBehaviour
         InputHandler();
         coolDownHandler();
         dodgeHandler();
+        attackHandler();
         }
 
     void InputHandler()
@@ -54,7 +60,8 @@ public class PlayerController : MonoBehaviour
         {
             if(_state != State.onCoolDown)
             {
-                Debug.Log("Attack");
+                isAttacking = true;
+                anim.SetBool("isAttacking", true);
                 _state = State.onCoolDown;
             }
         }
@@ -67,6 +74,20 @@ public class PlayerController : MonoBehaviour
                 isDodging = true;
                 collider.enabled = false;
                 movementSpeed = movementSpeed * 2;
+            }
+        }
+    }
+
+    void attackHandler()
+    {
+        if(isAttacking)
+        {
+            attackCounter += Time.deltaTime;
+            if(attackCounter > attackDuration)
+            {
+                anim.SetBool("isAttacking", false);
+                isAttacking = false;
+                attackCounter = 0;
             }
         }
     }

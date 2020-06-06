@@ -229,6 +229,7 @@ GameObject:
   - component: {fileID: 186935822}
   - component: {fileID: 186935827}
   - component: {fileID: 186935828}
+  - component: {fileID: 186935829}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -252,6 +253,9 @@ MonoBehaviour:
   coolDownCounter: 0
   movementSpeed: 10
   knockBackForce: -3
+  attackDuration: 0.25
+  attackCounter: 0
+  isAttacking: 0
   dodgeDuration: 0.25
   dodgeCounter: 0
   isDodging: 0
@@ -360,6 +364,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f16cf01161a44147b6fbccb5de8cf5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &186935829
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 186935821}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 46d4213ddefa208499e1b4540e87bc9f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &413729297
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,7 +510,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 155, y: -15}
+  m_AnchoredPosition: {x: 163.4, y: -15}
   m_SizeDelta: {x: 315, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &469759705
