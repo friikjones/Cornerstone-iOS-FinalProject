@@ -9,8 +9,6 @@ public class PlayerController : MonoBehaviour
         normal,
         onCoolDown
     }
-
-    private Animator anim;
     private CapsuleCollider collider;
     private CapsuleCollider swordCollider;
 
@@ -29,12 +27,9 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         collider = GetComponent<CapsuleCollider>();
-        anim = GetComponent<Animator>();
-        swordCollider = GameObject.FindWithTag("Sword").GetComponent<CapsuleCollider>();
         health = 5;
         coolDownCounter = 0;
         isDodging = false;
-        swordCollider.enabled = false;
         _state = State.normal;
     }
 
@@ -61,7 +56,6 @@ public class PlayerController : MonoBehaviour
             if(_state != State.onCoolDown)
             {
                 isAttacking = true;
-                anim.SetBool("isAttacking", true);
                 _state = State.onCoolDown;
             }
         }
@@ -85,7 +79,6 @@ public class PlayerController : MonoBehaviour
             attackCounter += Time.deltaTime;
             if(attackCounter > attackDuration)
             {
-                anim.SetBool("isAttacking", false);
                 isAttacking = false;
                 attackCounter = 0;
             }
