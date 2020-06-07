@@ -2,17 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoomEncounter : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+public class RoomEncounter : MonoBehaviour {
+
+    void OnTriggerEnter(Collider other) {
+        if (other.tag == "Player") {
+            SpawnWave();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    void SpawnWave() {
     }
 }
