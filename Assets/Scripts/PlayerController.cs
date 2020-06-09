@@ -4,120 +4,52 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public enum State
-    {
-        normal,
-        onCoolDown
-    }
-    private CapsuleCollider collider;
-    private CapsuleCollider swordCollider;
-
+    private InputManager manager;
+    public ProjectileController projectile;
+    public float projectileSpeed;
+    public float timeBetweenShots;
+    private float shotCounter;
+    public Transform firePoint;
     public int health;
-    public float coolDownCounter;
     public float movementSpeed;
-    public float knockBackForce;
-    public float attackDuration;
-    public float attackCounter;
-    public bool isAttacking;
-    public float dodgeDuration;
-    public float dodgeCounter;
-    public bool isDodging;
-    public State _state;
     
     void Start()
     {
-        collider = GetComponent<CapsuleCollider>();
+        manager = GameObject.Find("GameManager").GetComponent<InputManager>();
         health = 5;
-        coolDownCounter = 0;
-        isDodging = false;
-        _state = State.normal;
     }
 
     void Update()
     {
-        InputHandler();
-        coolDownHandler();
-        dodgeHandler();
-        attackHandler();
-        }
+        getMovement();
+        fireHandler();
+    }
 
-    void InputHandler()
+    void getMovement()
     {
-        Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-
+        Vector3 movement = new Vector3(manager.movementInput.x, 0, manager.movementInput.y);
+        Vector3 aim = new Vector3(manager.aimInput.x, 0, manager.aimInput.y);
+        if(aim != Vector3.zero)
+        {
+            transform.rotation = Quaternion.LookRotation(aim);
+        }
         if(movement != Vector3.zero)
         {
-            transform.rotation = Quaternion.LookRotation(movement);
             transform.Translate(movement * movementSpeed * Time.deltaTime, Space.World);
         }
-
-        if(Input.GetKeyDown("o"))
-        {
-            if(_state != State.onCoolDown)
-            {
-                isAttacking = true;
-                _state = State.onCoolDown;
-            }
-        }
-
-        if(Input.GetKeyDown("p"))
-        {
-            if(_state != State.onCoolDown)
-            {
-                _state = State.onCoolDown;
-                isDodging = true;
-                collider.enabled = false;
-                movementSpeed = movementSpeed * 2;
-            }
-        }
     }
 
-    void attackHandler()
+    void fireHandler()
     {
-        if(isAttacking)
+        while(manager.aimInput != Vector2.zero)
         {
-            attackCounter += Time.deltaTime;
-            if(attackCounter > attackDuration)
+            shotCounter -= Time.deltaTime;
+            if(shotCounter <= 0)
             {
-                isAttacking = false;
-                attackCounter = 0;
+                shotCounter = timeBetweenShots;
+                ProjectileController newProjectile = Instantiate(projectile, firePoint.position, firePoint.rotation) as ProjectileController;
+                newProjectile.speed = projectileSpeed;
             }
         }
-    }
-
-    void dodgeHandler()
-    {
-        if(isDodging)
-        {
-            dodgeCounter += Time.deltaTime;
-            if(dodgeCounter > dodgeDuration)
-            {
-                isDodging = false;
-                dodgeCounter = 0;
-                movementSpeed = movementSpeed / 2;
-                collider.enabled = true;
-            }
-        }
-    }
-
-    void coolDownHandler()
-    {
-        if(_state == State.onCoolDown)
-        {
-            coolDownCounter += Time.deltaTime;
-            if(coolDownCounter >= 3)
-            {
-                _state = State.normal;
-                coolDownCounter = 0;
-            }
-        }
-    }
-
-    public void KnockBack(Vector3 enemyPos)
-    {
-        Vector3 posDiff = (enemyPos - transform.position).normalized;
-        
-        Vector3 knockBackDirection = new Vector3(posDiff.x, 0, posDiff.z);
-        transform.Translate(knockBackDirection * knockBackForce, Space.World);
     }
 }
