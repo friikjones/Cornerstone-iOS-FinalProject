@@ -19,7 +19,7 @@ public class InputManager : MonoBehaviour
 
     void getInput()
     {
-        movementInput = new Vector2(Input.GetAxisRaw("WASDHorizontal"), Input.GetAxis("WASDVertical"));
-        aimInput = new Vector2(Input.GetAxisRaw("ArrowHorizontal"), Input.GetAxis("ArrowVertical"));
+        movementInput = new Vector2(Input.GetAxisRaw("WASDHorizontal"), Input.GetAxisRaw("WASDVertical"));
+        aimInput = new Vector2(Input.GetAxis("ArrowHorizontal"), Input.GetAxis("ArrowVertical"));
     }
 }

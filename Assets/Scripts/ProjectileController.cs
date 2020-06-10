@@ -5,6 +5,7 @@ using UnityEngine;
 public class ProjectileController : MonoBehaviour
 {
     public float speed;
+    public float killTime;
 
     void Start()
     {
@@ -14,5 +15,6 @@ public class ProjectileController : MonoBehaviour
     void Update()
     {
         transform.Translate(transform.forward * speed * Time.deltaTime, Space.World);
+        Destroy(this.gameObject, killTime);
     }
 }

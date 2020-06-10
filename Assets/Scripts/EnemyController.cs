@@ -23,4 +23,12 @@ public class EnemyController : MonoBehaviour
         transform.LookAt(player);
         transform.position += transform.forward * movementSpeed * Time.deltaTime;
     }
+
+    private void OnTriggerEnter(Collider other) {
+        if(other.tag == "Projectile")
+        {
+            Destroy(other.gameObject);
+            Destroy(this.gameObject);
+        }
+    }
 }

@@ -5,10 +5,10 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private InputManager manager;
-    public ProjectileController projectile;
+    public GameObject projectile;
     public float projectileSpeed;
     public float timeBetweenShots;
-    private float shotCounter;
+    public float shotCounter;
     public Transform firePoint;
     public int health;
     public float movementSpeed;
@@ -41,14 +41,14 @@ public class PlayerController : MonoBehaviour
 
     void fireHandler()
     {
-        while(manager.aimInput != Vector2.zero)
+        if(manager.aimInput != Vector2.zero)
         {
             shotCounter -= Time.deltaTime;
             if(shotCounter <= 0)
             {
                 shotCounter = timeBetweenShots;
-                ProjectileController newProjectile = Instantiate(projectile, firePoint.position, firePoint.rotation) as ProjectileController;
-                newProjectile.speed = projectileSpeed;
+                GameObject newProjectile = Instantiate(projectile, firePoint.position, firePoint.rotation);
+                newProjectile.GetComponent<ProjectileController>().speed = projectileSpeed;
             }
         }
     }
