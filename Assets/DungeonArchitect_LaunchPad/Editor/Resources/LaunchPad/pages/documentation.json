@@ -1,0 +1,28 @@
+{
+	"title": "Documentation",
+	"layout": "CardGrid",
+	"description": "View online documentation",
+	"showCategories": false,
+	"heightOverride": 210,
+	"categories": 
+	[
+		{
+			"category": "default",
+			"cards":
+			[
+				{
+					"title": "Tutorials",
+					"desc": "Learn how to use Dungeon Architect. Start here if you are new",
+					"image": "thumbs/thumb_docs_book",
+					"url": "http://docs.dungeonarchitect.com"
+				},
+				{
+					"title": "User Manual",
+					"desc": "Comprehensive User Manual",
+					"image": "thumbs/thumb_docs_book",
+					"url": "http://coderespawn.github.io/dungeon-architect-user-guide-unity"
+				}
+			]
+		}
+	]
+}
