@@ -3548,30 +3548,30 @@ PrefabInstance:
     - target: {fileID: 876904021481137447, guid: b93209d998103224abd706352fe4471d,
         type: 3}
       propertyPath: Modules.Array.size
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 876904021481137447, guid: b93209d998103224abd706352fe4471d,
         type: 3}
       propertyPath: Modules.Array.data[0].module
       value: 
-      objectReference: {fileID: 4016275571677700052, guid: 8e042045d2068d840ae91ce9055201ca,
+      objectReference: {fileID: 4016275571677700052, guid: 8cd759533effb334e950e49c69d24748,
         type: 3}
     - target: {fileID: 876904021481137447, guid: b93209d998103224abd706352fe4471d,
         type: 3}
       propertyPath: Modules.Array.data[1].module
       value: 
-      objectReference: {fileID: 252169882971934289, guid: 3ece6349ed937d445ad5dd3927d0ccfb,
+      objectReference: {fileID: 4016275571677700052, guid: 8e042045d2068d840ae91ce9055201ca,
         type: 3}
     - target: {fileID: 876904021481137447, guid: b93209d998103224abd706352fe4471d,
         type: 3}
       propertyPath: Modules.Array.data[2].module
       value: 
-      objectReference: {fileID: 6767772473561781419, guid: c3681dc1740b86f4196a7b2cf76b21ef,
+      objectReference: {fileID: 252169882971934289, guid: 3ece6349ed937d445ad5dd3927d0ccfb,
         type: 3}
     - target: {fileID: 876904021481137447, guid: b93209d998103224abd706352fe4471d,
         type: 3}
       propertyPath: Modules.Array.data[0].category
-      value: Room
+      value: Start
       objectReference: {fileID: 0}
     - target: {fileID: 876904021481137447, guid: b93209d998103224abd706352fe4471d,
         type: 3}
@@ -3586,57 +3586,57 @@ PrefabInstance:
     - target: {fileID: 876904021481137447, guid: b93209d998103224abd706352fe4471d,
         type: 3}
       propertyPath: Modules.Array.data[3].category
-      value: Corridor
+      value: Room
       objectReference: {fileID: 0}
     - target: {fileID: 876904021481137447, guid: b93209d998103224abd706352fe4471d,
         type: 3}
       propertyPath: Modules.Array.data[3].module
       value: 
-      objectReference: {fileID: 4016275571677700052, guid: 2bc2f9d06bab0b64d8018f6415b1b5a3,
+      objectReference: {fileID: 6767772473561781419, guid: c3681dc1740b86f4196a7b2cf76b21ef,
         type: 3}
     - target: {fileID: 876904021481137447, guid: b93209d998103224abd706352fe4471d,
         type: 3}
       propertyPath: Modules.Array.data[4].category
-      value: Start
+      value: Room
       objectReference: {fileID: 0}
     - target: {fileID: 876904021481137447, guid: b93209d998103224abd706352fe4471d,
         type: 3}
       propertyPath: Modules.Array.data[4].module
       value: 
-      objectReference: {fileID: 4016275571677700052, guid: 8cd759533effb334e950e49c69d24748,
+      objectReference: {fileID: 7633311957902163995, guid: e1eb98d7a52acd246b4ff62982ad5978,
         type: 3}
     - target: {fileID: 876904021481137447, guid: b93209d998103224abd706352fe4471d,
         type: 3}
       propertyPath: Modules.Array.data[5].category
-      value: Shop
+      value: Corridor
       objectReference: {fileID: 0}
     - target: {fileID: 876904021481137447, guid: b93209d998103224abd706352fe4471d,
         type: 3}
       propertyPath: Modules.Array.data[5].module
       value: 
-      objectReference: {fileID: 252169882971934289, guid: dd3f8c439f03c8441b9c53c213fdd4c1,
+      objectReference: {fileID: 4016275571677700052, guid: 2bc2f9d06bab0b64d8018f6415b1b5a3,
         type: 3}
     - target: {fileID: 876904021481137447, guid: b93209d998103224abd706352fe4471d,
         type: 3}
       propertyPath: Modules.Array.data[6].category
-      value: Key
+      value: Corridor
       objectReference: {fileID: 0}
     - target: {fileID: 876904021481137447, guid: b93209d998103224abd706352fe4471d,
         type: 3}
       propertyPath: Modules.Array.data[6].module
       value: 
-      objectReference: {fileID: 4016275571677700052, guid: 86ed14ca19e45e54c9b6a5249b263c63,
+      objectReference: {fileID: 4016275571677700052, guid: 8627a0962e1ef2844a3a8c7f6ecdd935,
         type: 3}
     - target: {fileID: 876904021481137447, guid: b93209d998103224abd706352fe4471d,
         type: 3}
       propertyPath: Modules.Array.data[7].category
-      value: Lock
+      value: BossRoom
       objectReference: {fileID: 0}
     - target: {fileID: 876904021481137447, guid: b93209d998103224abd706352fe4471d,
         type: 3}
       propertyPath: Modules.Array.data[7].module
       value: 
-      objectReference: {fileID: 4016275571677700052, guid: 6bfb59d882be14c4cb76494730901609,
+      objectReference: {fileID: 5994780330130464127, guid: a55b9004da194d44f973f70c02dc32a8,
         type: 3}
     - target: {fileID: 876904021481137447, guid: b93209d998103224abd706352fe4471d,
         type: 3}
@@ -3933,6 +3933,7 @@ MonoBehaviour:
   player: {fileID: 143346295}
   startDiff: {x: 10, y: 1, z: -10}
   seed: 0
+  roomsEntered: 0
 --- !u!1 &1386076416
 GameObject:
   m_ObjectHideFlags: 0
