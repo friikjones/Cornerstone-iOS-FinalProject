@@ -6,22 +6,45 @@ public class EnemyController : MonoBehaviour
 {
 
     private Transform player;
+    public Transform firePoint;
+    public GameObject projectile;
+    public Rigidbody rb;
+    public bool shouldFire;
+    public float projectileSpeed;
+    public float timeBetweenShots;
+    public float shotCounter;
     public float movementSpeed;
 
     void Start()
     {
         player = GameObject.Find("Player").transform;
+        rb = GetComponent<Rigidbody>();
     }
 
     void Update()
     {
         MovementHandler();
+        fireHandler();
     }
 
     void MovementHandler()
     {
         transform.LookAt(player);
-        transform.position += transform.forward * movementSpeed * Time.deltaTime;
+        rb.velocity = transform.forward * movementSpeed;
+    }
+
+    void fireHandler()
+    {
+        if(shouldFire)
+        {
+            shotCounter -= Time.deltaTime;
+            if(shotCounter <=0)
+            {
+                shotCounter = timeBetweenShots;
+                GameObject newProjectile = Instantiate(projectile, firePoint.position, firePoint.rotation);
+                newProjectile.GetComponent<ProjectileController>().speed = projectileSpeed;
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other) {

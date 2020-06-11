@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
     private InputManager manager;
     public GameObject projectile;
+    public Rigidbody rb;
     public float projectileSpeed;
     public float timeBetweenShots;
     public float shotCounter;
@@ -14,6 +15,7 @@ public class PlayerController : MonoBehaviour {
 
     void Start() {
         manager = GameObject.Find("GameManager").GetComponent<InputManager>();
+        rb = GetComponent<Rigidbody>();
         health = 5;
     }
 
@@ -29,7 +31,8 @@ public class PlayerController : MonoBehaviour {
             transform.rotation = Quaternion.LookRotation(aim);
         }
         if (movement != Vector3.zero) {
-            transform.Translate(movement * movementSpeed * Time.deltaTime, Space.World);
+            // transform.Translate(movement * movementSpeed * Time.deltaTime, Space.World);
+            rb.velocity = movement * movementSpeed;
         }
     }
 

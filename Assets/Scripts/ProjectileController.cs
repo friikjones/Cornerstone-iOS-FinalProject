@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class ProjectileController : MonoBehaviour
 {
+    public Rigidbody rb;
     public float speed;
     public float killTime;
 
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
     }
 
     void Update()
     {
-        transform.Translate(transform.forward * speed * Time.deltaTime, Space.World);
+        rb.velocity = transform.forward * speed;
         Destroy(this.gameObject, killTime);
     }
 }

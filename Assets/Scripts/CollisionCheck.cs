@@ -18,11 +18,12 @@ public class CollisionCheck : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Enemy")
+        if(other.tag == "Enemy")
         {
             if(player.health > 0)
             {
                 player.health--;
+                Debug.Log(player.health);
             }
         }
     }
