@@ -12,6 +12,8 @@ public class GameManagerScript : MonoBehaviour {
     public Vector3 startDiff;
     public int seed;
 
+    public int roomsEntered;
+
     void Start() {
         player = GameObject.Find("Player");
         dungeonSnap = GameObject.Find("DungeonSnap");
