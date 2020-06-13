@@ -12,8 +12,17 @@ public class PlayerController : MonoBehaviour {
     public int health;
     public float movementSpeed;
 
+    public Vector3 movement;
+    public Vector3 aim;
+
+    public GameObject body;
+    public GameObject cannon;
+
+    private Rigidbody rb;
+
     void Start() {
         manager = GameObject.Find("GameManager").GetComponent<InputManager>();
+        rb = GetComponent<Rigidbody>();
         health = 5;
     }
 
@@ -23,13 +32,16 @@ public class PlayerController : MonoBehaviour {
     }
 
     void getMovement() {
-        Vector3 movement = new Vector3(manager.movementInput.x, 0, manager.movementInput.y);
-        Vector3 aim = new Vector3(manager.aimInput.x, 0, manager.aimInput.y);
-        if (aim != Vector3.zero) {
-            transform.rotation = Quaternion.LookRotation(aim);
-        }
+        movement = new Vector3(manager.movementInput.x, 0, manager.movementInput.y);
+        aim = new Vector3(manager.aimInput.x, 0, manager.aimInput.y);
         if (movement != Vector3.zero) {
-            transform.Translate(movement * movementSpeed * Time.deltaTime, Space.World);
+            rb.velocity = movement * movementSpeed;
+            transform.rotation = Quaternion.LookRotation(movement);
+        }
+        if (aim != Vector3.zero) {
+            Quaternion tmp_aim = Quaternion.LookRotation(aim);
+            cannon.transform.localRotation = Quaternion.Euler(0, 0, tmp_aim.eulerAngles.y) *
+                Quaternion.Euler(0, 0, -transform.rotation.eulerAngles.y);
         }
     }
 
@@ -38,8 +50,8 @@ public class PlayerController : MonoBehaviour {
             shotCounter -= Time.deltaTime;
             if (shotCounter <= 0) {
                 shotCounter = timeBetweenShots;
-                GameObject newProjectile = Instantiate(projectile, firePoint.position, firePoint.rotation);
-                newProjectile.GetComponent<ProjectileController>().speed = projectileSpeed;
+                GameObject newProjectile = Instantiate(projectile, firePoint.position, cannon.transform.localRotation);
+                newProjectile.GetComponent<Rigidbody>().velocity = aim.normalized * projectileSpeed;
             }
         }
     }

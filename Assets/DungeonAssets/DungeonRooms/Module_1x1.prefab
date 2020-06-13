@@ -167,11 +167,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a21025457cfa05f4a8e1aa2654971559, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 1194113764466125246, guid: bc5914ff29e051b4398d03ef2b7c678c, type: 3}
+  enemy: {fileID: 8399082421584059067, guid: aa13b5229b626ca4e8dc2b85a359bb4b, type: 3}
   roomsEntered: 0
   gameManagerScript: {fileID: 0}
-  initialDiff: {x: -5, y: 1, z: 5}
-  range: 2
+  initialDiff: {x: 10, y: 0, z: -10}
+  range: 4
 --- !u!1 &1087966337453968528
 GameObject:
   m_ObjectHideFlags: 0
@@ -1659,26 +1659,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4016275571677700053}
     m_Modifications:
-    - target: {fileID: 1892590700871059027, guid: 25ee5a3deca8b134d85e3f5c1db5739f,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1892590700871059031, guid: 25ee5a3deca8b134d85e3f5c1db5739f,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1892590701993573996, guid: 25ee5a3deca8b134d85e3f5c1db5739f,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1892590701993574000, guid: 25ee5a3deca8b134d85e3f5c1db5739f,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 1892590702502787197, guid: 25ee5a3deca8b134d85e3f5c1db5739f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1739,16 +1719,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ModuleConnection
       objectReference: {fileID: 0}
-    - target: {fileID: 2369812398218431032, guid: 25ee5a3deca8b134d85e3f5c1db5739f,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 4300000, guid: 725e06bb2a1d862419cadf3857baae00, type: 2}
-    - target: {fileID: 3213939314568136234, guid: 25ee5a3deca8b134d85e3f5c1db5739f,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 4300000, guid: c0eeb21c300a1bb43a0387a68b02ce70, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25ee5a3deca8b134d85e3f5c1db5739f, type: 3}
 --- !u!4 &8499508917041109819 stripped

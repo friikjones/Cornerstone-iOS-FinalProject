@@ -1724,11 +1724,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a21025457cfa05f4a8e1aa2654971559, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 1194113764466125246, guid: bc5914ff29e051b4398d03ef2b7c678c, type: 3}
+  enemy: {fileID: 8399082421584059067, guid: aa13b5229b626ca4e8dc2b85a359bb4b, type: 3}
   roomsEntered: 0
   gameManagerScript: {fileID: 0}
-  initialDiff: {x: 5, y: 1, z: 0}
-  range: 2
+  initialDiff: {x: 10, y: 0, z: 0}
+  range: 4
 --- !u!54 &2381540989923358406
 Rigidbody:
   m_ObjectHideFlags: 0
