@@ -2,18 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JoystickPlayerExample : MonoBehaviour {
+public class JoystickPlayerExample : MonoBehaviour
+{
     public float speed;
-    public FixedJoystick leftJoystick;
-    public FixedJoystick rightJoystick;
+    public VariableJoystick variableJoystick;
     public Rigidbody rb;
 
-    public void FixedUpdate() {
-        Debug.Log("Left------");
-        Debug.Log("Horizontal: " + leftJoystick.Horizontal);
-        Debug.Log("Vertical: " + leftJoystick.Vertical);
-        Debug.Log("Right------");
-        Debug.Log("Horizontal: " + rightJoystick.Horizontal);
-        Debug.Log("Vertical: " + rightJoystick.Vertical);
+    public void FixedUpdate()
+    {
+        Vector3 direction = Vector3.forward * variableJoystick.Vertical + Vector3.right * variableJoystick.Horizontal;
+        rb.AddForce(direction * speed * Time.fixedDeltaTime, ForceMode.VelocityChange);
     }
 }
