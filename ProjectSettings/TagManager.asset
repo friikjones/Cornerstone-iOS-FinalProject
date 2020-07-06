@@ -4,7 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Target
+  - Enemy
+  - EnemyBeam
+  - Ball
+  - Projectile
   layers:
   - Default
   - TransparentFX
@@ -14,7 +17,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Glowing
   - 
   - 
   - 
@@ -41,7 +44,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: UI
-    uniqueID: 382681175
     locked: 0
