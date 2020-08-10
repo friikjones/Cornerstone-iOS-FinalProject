@@ -10,8 +10,13 @@ public class AlienBehaviourScript : MonoBehaviour {
     private Rigidbody2D rb;
     private GameObject gameManager;
     private GameManagerScript gameManagerScript;
-    private AlienState state;
+    public AlienState state;
     public AlienState initialState;
+
+    //Pause State
+    public AlienState lastState;
+    public bool paused;
+
 
     // Closed State
     private int closedTick;
@@ -38,6 +43,9 @@ public class AlienBehaviourScript : MonoBehaviour {
     // Hit Vars
     public float deathTimer;
 
+    // Game manager Vars
+    public GameState gameLastState;
+
     private void Start() {
         // external
         gameManager = GameObject.Find("GameManager");
@@ -53,10 +61,16 @@ public class AlienBehaviourScript : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate() {
         BehaviourState();
+        gameLastState = gameManagerScript.gameState;
     }
 
 
     void BehaviourState() {
+
+        if ((gameLastState != GameState.Paused && gameManagerScript.gameState == GameState.Paused) ||
+            (gameLastState == GameState.Paused && gameManagerScript.gameState != GameState.Paused)) {
+            PauseToggle();
+        }
 
         switch (state) {
             case AlienState.Initiated:
@@ -75,12 +89,7 @@ public class AlienBehaviourScript : MonoBehaviour {
                 closedTick++;
                 projectileTick++;
                 if (projectileTick > projectileRate * 50) {
-                    projectileTick = 0;
-                    GameObject tmp_proj = Instantiate(projectile, Vector3.zero, Quaternion.identity);
-                    tmp_proj.transform.parent = this.transform;
-                    tmp_proj.transform.localPosition = new Vector2(0, -3);
-                    tmp_proj.SetActive(true);
-                    tmp_proj.GetComponent<Rigidbody2D>().velocity = Vector2.down * projectileSpeed;
+                    FireProjectile();
                 }
 
                 //Transitions
@@ -135,11 +144,33 @@ public class AlienBehaviourScript : MonoBehaviour {
                 }
                 Destroy(this.gameObject, deathTimer);
                 break;
+
+            case AlienState.Paused:
+                if (!paused) {
+                    state = lastState;
+                }
+                break;
+
         }
     }
 
-    void FireProjectile() {
+    public void PauseToggle() {
+        if (!paused) {
+            lastState = state;
+            state = AlienState.Paused;
+        } else {
+            state = lastState;
+        }
+        paused = !paused;
+    }
 
+    void FireProjectile() {
+        projectileTick = 0;
+        GameObject tmp_proj = Instantiate(projectile, Vector3.zero, Quaternion.identity);
+        tmp_proj.transform.parent = this.transform;
+        tmp_proj.transform.localPosition = new Vector2(0, -3);
+        tmp_proj.SetActive(true);
+        tmp_proj.GetComponent<Rigidbody2D>().velocity = Vector2.down * projectileSpeed;
     }
 
     void ReleaseBall() {

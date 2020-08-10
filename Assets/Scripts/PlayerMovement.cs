@@ -14,15 +14,31 @@ public class PlayerMovement : MonoBehaviour {
     private RectTransform targetRect;
     private Rigidbody2D rb;
 
+    public bool paused;
+
+
+    // Game manager Vars
+    private GameManagerScript gameManagerScript;
+    public GameState gameLastState;
+
+
     void Start() {
         thisRect = GetComponent<RectTransform>();
         targetRect = joystick.transform.Find("Handle").GetComponent<RectTransform>();
         rb = GetComponent<Rigidbody2D>();
+        gameManagerScript = GameObject.Find("GameManager").GetComponent<GameManagerScript>();
     }
 
 
     void Update() {
-        getInput();
+        if (!paused)
+            getInput();
+
+        if ((gameLastState != GameState.Paused && gameManagerScript.gameState == GameState.Paused) ||
+            (gameLastState == GameState.Paused && gameManagerScript.gameState != GameState.Paused)) {
+            PauseToggle();
+        }
+        gameLastState = gameManagerScript.gameState;
     }
 
     void getInput() {
@@ -41,5 +57,9 @@ public class PlayerMovement : MonoBehaviour {
         if (thisRect.localPosition.x > (movementInput.x + margin)) {
             rb.velocity = Vector2.left * speed / 2;
         }
+    }
+
+    public void PauseToggle() {
+        paused = !paused;
     }
 }
