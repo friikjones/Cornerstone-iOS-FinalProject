@@ -5,33 +5,53 @@ using UnityEngine.UI;
 
 public class GameManagerScript : MonoBehaviour {
 
+    // Game Vars
     public int maxLives;
     public int lives;
     public Material bottomWallMat;
     public Color color;
+    public int currentScore;
+    public int highScore;
+    public float ballSpeed;
+    public float ballSpeedAdded;
+    public int alienPoints;
 
     // GameState Vars
     public GameState gameState;
+    public float gameTimer;
+    public int gameTick;
 
     //UI Vars
     public GameObject pausedLabel;
     public Text pointsLabel;
+    public Text timerLabel;
 
-    // Test Vars
-    public bool pauseTest;
+    // Pause Vars
+    public bool pauseFlag;
+    public GameObject pauseMenu;
 
     private void Start() {
         lives = maxLives;
         gameState = GameState.Playing;
+        highScore = PlayerPrefs.GetInt("highscore", 0);
+    }
+
+    private void FixedUpdate() {
+        if (gameState != GameState.Paused) {
+            gameTick++;
+            gameTimer = gameTick / 50;
+        }
     }
 
     private void Update() {
         UpdateUI();
         UpdateState();
 
-        if (pauseTest) {
+        alienPoints = Mathf.RoundToInt(ballSpeed * 50);
+
+        if (pauseFlag) {
             PauseToggle();
-            pauseTest = false;
+            pauseFlag = false;
         }
     }
 
@@ -41,14 +61,23 @@ public class GameManagerScript : MonoBehaviour {
         bottomWallMat.SetColor("_EmissionColor", color);
         if (gameState == GameState.Paused) {
             pausedLabel.SetActive(true);
+            pauseMenu.SetActive(true);
         } else {
             pausedLabel.SetActive(false);
+            pauseMenu.SetActive(false);
         }
+
+        //Update Points Label
+        pointsLabel.text = currentScore.ToString();
+
+        //Update Timer Label
+        // timerLabel.text = gameTimer.ToString();
     }
 
     void UpdateState() {
         if (lives < 1) {
             gameState = GameState.Ended;
+            GameObject.Find("SceneTransitionHelper").GetComponent<SceneTransitionScript>().SceneTransitionLose();
         }
     }
 
@@ -63,6 +92,12 @@ public class GameManagerScript : MonoBehaviour {
         }
     }
 
+    private void OnDestroy() {
+        if (currentScore > highScore) {
+            PlayerPrefs.SetInt("highscore", currentScore);
+            PlayerPrefs.Save();
+        }
+    }
 
 
 }

@@ -5,5 +5,6 @@ public enum AlienState {
     BallGrab,
     BallRelease,
     Hit,
-    Paused
+    Paused,
+    Idle
 }

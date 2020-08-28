@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4491410618917214733}
   - component: {fileID: 8424101185363929969}
   m_Layer: 8
-  m_Name: Alien
+  m_Name: AlienStealing
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -146,7 +146,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   initialState: 0
+  lastState: 0
+  paused: 0
+  projectileRate: 0
+  projectile: {fileID: 0}
+  projectileSpeed: 0
+  closedTimer: 0
+  openTimer: 0
+  grabSpeed: 0
+  releaseSpeed: 0
   deathTimer: 0
+  gameLastState: 0
 --- !u!1 &5352851780552398406
 GameObject:
   m_ObjectHideFlags: 0

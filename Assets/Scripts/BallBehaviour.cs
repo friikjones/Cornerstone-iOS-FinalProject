@@ -9,7 +9,9 @@ public class BallBehaviour : MonoBehaviour {
     public Vector2 lastSpeed;
 
     public bool paused;
-    public bool pauseTest;
+
+    public AudioSource impactSound;
+    public AudioSource liveLost;
 
     // Game manager Vars
     private GameManagerScript gameManagerScript;
@@ -19,7 +21,6 @@ public class BallBehaviour : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = Vector2.down * speed;
         gameManagerScript = GameObject.Find("GameManager").GetComponent<GameManagerScript>();
-
     }
 
     private void OnCollisionExit2D(Collision2D other) {
@@ -27,6 +28,11 @@ public class BallBehaviour : MonoBehaviour {
             rb.velocity += new Vector2(0, rb.velocity.y * 1.3f);
         }
         rb.velocity = rb.velocity.normalized * speed;
+        if (other.transform.tag == "BottomWall") {
+            gameManagerScript.lives--;
+            liveLost.Play();
+        }
+        impactSound.Play();
     }
 
     private void Update() {
@@ -35,6 +41,7 @@ public class BallBehaviour : MonoBehaviour {
             PauseToggle();
         }
         gameLastState = gameManagerScript.gameState;
+        speed = gameManagerScript.ballSpeed;
     }
 
     public void PauseToggle() {

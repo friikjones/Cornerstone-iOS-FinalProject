@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AlienBehaviourScript : MonoBehaviour {
+public class AlienStealingBehaviourScript : MonoBehaviour {
 
     // Global Vars
     private GameObject openModel;

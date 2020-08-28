@@ -8,6 +8,9 @@ TagManager:
   - EnemyBeam
   - Ball
   - Projectile
+  - BottomWall
+  - Music
+  - ButtonSFX
   layers:
   - Default
   - TransparentFX

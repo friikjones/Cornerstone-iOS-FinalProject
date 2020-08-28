@@ -43,14 +43,20 @@
      <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\FixedJoystick.cs" />
      <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\FloatingJoystick.cs" />
      <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\VariableJoystick.cs" />
-     <Compile Include="Assets\Scripts\AlienBehaviourScript.cs" />
-     <Compile Include="Assets\Scripts\AlienStates.cs" />
+     <Compile Include="Assets\Scripts\Alien Simple\AlienSimpleBehaviour.cs" />
+     <Compile Include="Assets\Scripts\Alien Simple\AlienTimedSpawnerScript.cs" />
+     <Compile Include="Assets\Scripts\Alien Stealing\AlienStates.cs" />
+     <Compile Include="Assets\Scripts\Alien Stealing\AlienStealingBehaviourScript.cs" />
      <Compile Include="Assets\Scripts\BallBehaviour.cs" />
      <Compile Include="Assets\Scripts\BlinkingLabelScript.cs" />
      <Compile Include="Assets\Scripts\GameManagerScript.cs" />
      <Compile Include="Assets\Scripts\GameState.cs" />
+     <Compile Include="Assets\Scripts\HighScoreLoader.cs" />
+     <Compile Include="Assets\Scripts\InitialMusicStart.cs" />
+     <Compile Include="Assets\Scripts\MusicScript.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\ProjectileScript.cs" />
+     <Compile Include="Assets\Scripts\SceneTransitionScript.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.14f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
